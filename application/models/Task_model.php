@@ -2,6 +2,15 @@
 
 class Task_model extends CI_Model{
 
+    const HOST = 'ssl://smtp.oscprofessionals.com';
+    const PORT = '465';
+    const USER = 'chetan@oscprofessionals.in';
+    const PASS = 'cr@250917';
+    const MAIL_TYPE = 'html';
+    const CHARSET = 'iso-8859-1';
+    const SUBJECT = 'Test Mail by Codeigniter';
+
+
     function taskListingCount($searchText = '')
     {
         $this->db->select('BaseTbl.*, User.name as UserName,Site.address as SiteAddress,Device.deviceName as deviceName');
@@ -13,7 +22,7 @@ class Task_model extends CI_Model{
             $likeCriteria = "(BaseTbl.taskName  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.status !=', 0);
+        /*$this->db->where('BaseTbl.status !=', 0);*/
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -183,8 +192,46 @@ class Task_model extends CI_Model{
         $this->db->where('BaseTbl.assignTo =',$roleId);
         $this->db->order_by('BaseTbl.taskId', 'DESC');
         $query = $this->db->get();
-        //echo $this->db->last_query();exit;
         return $query->result();
+    }
+
+    function sendMail()
+    {
+        //Load email library
+        $this->load->library('email');
+
+        //SMTP & mail configuration
+        $config = array(
+            'protocol'  => 'smtp',
+            'smtp_host' => self::HOST,
+            'smtp_port' => self::PORT,
+            'smtp_user' => self::USER,
+            'smtp_pass' => self::PASS,
+            'mailtype'  => self::MAIL_TYPE,
+            'charset'   => self::CHARSET
+        );
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->set_newline("\r\n");
+
+        //Email content
+        $htmlContent = '<h1>Sending email via SMTP server</h1>';
+        $htmlContent .= '<p>This email has sent via SMTP server from CodeIgniter application.</p>';
+
+        $this->email->to('chetanrode@mailinator.com');
+        $this->email->from(self::USER,'MyWebsite');
+        $this->email->subject('How to send email via SMTP server in CodeIgniter');
+        $this->email->message($htmlContent);
+
+        //Send email
+        $this->email->send();
+
+        $this->load->library('encrypt'); //to avoid spamming of mail
+
+        ////CHANGE SETTINGS IN GOGLE ACCOUNTS/////
+        ////MY ACCOUNT>SIGNING IN TO GOOGLE(under sign in & security)/////
+        ////SWITCH OFF 2 STEP VERIFICATION/////
+        ////IN CONNECTED APPS N SITES>SWITCH ONN---"ALLOW LESS SECURE APPS"----/////
     }
 
 }

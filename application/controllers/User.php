@@ -8,16 +8,33 @@ class User extends BaseController
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('site_model');
+        $this->load->model('task_model');
+        $this->load->model('device_model');
+        $this->load->model('task_model');
         $this->isLoggedIn();
     }
+
     public function index()
     {
         $this->global['pageTitle'] = 'CodeInsect : Dashboard';
 
         $userCount = $this->user_model->userListingCount();
+        $siteCount = $this->site_model->siteListingCount();
+        $taskCount = $this->task_model->taskListingCount();
+        $deviceCount = $this->device_model->deviceListingCount();
+        $taskRecords = $this->task_model->getCompletedTaskList();
 
-        $this->loadViews("dashboard", $this->global, NULL , $userCount);
+        $data['userCount'] = $userCount;
+        $data['siteCount'] = $siteCount;
+        $data['taskCount'] = $taskCount;
+        $data['deviceCount'] = $deviceCount;
+        $data['taskRecords'] = $taskRecords;
+
+
+        $this->loadViews("dashboard", $this->global, $data , NULL);
     }
+
     function userListing()
     {
         if($this->isAdmin() == TRUE)
@@ -28,20 +45,14 @@ class User extends BaseController
         {
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
-
             $this->load->library('pagination');
-
             $count = $this->user_model->userListingCount($searchText);
-
             $returns = $this->paginationCompress ( "userListing/", $count, 10 );
-
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
-
             $this->global['pageTitle'] = 'CodeInsect : User Listing';
             $this->loadViews("users", $this->global, $data, NULL);
         }
     }
-
 
     function addNew()
     {
@@ -53,10 +64,7 @@ class User extends BaseController
         {
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
-
-
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
-
             $this->loadViews("addNew", $this->global, $data, NULL);
         }
     }

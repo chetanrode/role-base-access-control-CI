@@ -4,19 +4,15 @@ class Site_model extends CI_Model{
 
     function siteListingCount($searchText = '')
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.createdDtm, Role.role');
-        $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
+        $this->db->select('BaseTbl.siteId, BaseTbl.address, BaseTbl.city, BaseTbl.district, BaseTbl.state, BaseTbl.contact');
+        $this->db->from('tbl_sites as BaseTbl');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
-                            OR  BaseTbl.name  LIKE '%".$searchText."%'
-                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $likeCriteria = "(BaseTbl.district  LIKE '%".$searchText."%'
+                            OR  BaseTbl.address  LIKE '%".$searchText."%'
+                            OR  BaseTbl.city  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
         $query = $this->db->get();
-
         return $query->num_rows();
     }
     function siteListing($searchText = '', $page, $segment)
@@ -29,8 +25,6 @@ class Site_model extends CI_Model{
                             OR  BaseTbl.contact  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        // $this->db->where('BaseTbl.isDeleted', 0);
-        // $this->db->order_by('BaseTbl.siteId', 'DESC');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 

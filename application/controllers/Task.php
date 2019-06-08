@@ -283,6 +283,7 @@ class Task extends BaseController
         $count = $this->task_model->taskListingCount($searchText);
         $returns = $this->paginationCompress ( "taskListing/", $count, 10 );
         $data['pdfData'] = $this->task_model->taskListing($searchText, $returns["page"], $returns["segment"]);
+        //$data['pdfData'] = $this->task_model->sendMail();
         $this->global['pageTitle'] = 'CodeInsect : PDF Report';
         $this->loadViews('task/pdfreport',$this->global, $data);
     }

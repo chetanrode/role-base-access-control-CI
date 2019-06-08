@@ -14,7 +14,7 @@ class Site extends BaseController
     {
         $this->global['pageTitle'] = 'CodeInsect : Sites';
 
-        $siteCount = $this->task_model->siteListingCount();
+        $siteCount = $this->site_model->siteListingCount();
 
         $this->loadViews("dashboard", $this->global, $siteCount , NULL);
     }

@@ -18,7 +18,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Users List</h3>
+                    <h3 class="fa fa-users"> Users List</h3>
                     <div class="box-tools">
                         <form action="<?php echo base_url() ?>userListing" method="POST" id="searchList">
                             <div class="input-group">
@@ -33,11 +33,11 @@
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Role</th>
-                        <th>Created On</th>
+                        <th class="">Name</th>
+                        <th class="">Email</th>
+                        <th class="">Mobile</th>
+                        <th class="">Role</th>
+                        <th class="">Created On</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     <?php

@@ -39,6 +39,8 @@ class User_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+
+
     function getUserRoles()
     {
         $this->db->select('roleId, role');

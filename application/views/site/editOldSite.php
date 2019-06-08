@@ -1,4 +1,4 @@
-<?php
+"40"<?php
 
 $siteId = $siteInfo->siteId;
 $address = $siteInfo->address;

@@ -4,17 +4,16 @@ class Device_model extends CI_Model{
 
     function deviceListingCount($searchText = '')
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.createdDtm, Role.role');
-        $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
+        $this->db->select('BaseTbl.deviceId, BaseTbl.deviceType, BaseTbl.deviceName, BaseTbl.stock, BaseTbl.createdDtm');
+        $this->db->from('iot_devices as BaseTbl');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
-                            OR  BaseTbl.name  LIKE '%".$searchText."%'
-                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $likeCriteria = "(BaseTbl.deviceType  LIKE '%".$searchText."%'
+                            OR  BaseTbl.deviceName  LIKE '%".$searchText."%'
+                            OR  BaseTbl.stock  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
+        /*$this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.roleId !=', 1);*/
         $query = $this->db->get();
 
         return $query->num_rows();

@@ -12,8 +12,8 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3><?php echo "40" ?></h3>
-                        <p>New User</p>
+                        <h3><?php echo $userCount; ?></h3>
+                        <p>Users</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -25,7 +25,7 @@
                 <!-- small box -->
                 <div class="small-box bg-maroon-gradient">
                     <div class="inner">
-                        <h3><?php echo "30" ?></h3>
+                        <h3><?php echo $siteCount; ?></h3>
                         <p>Sites</p>
                     </div>
                     <div class="icon">
@@ -38,7 +38,7 @@
                 <!-- small box -->
                 <div class="small-box bg-teal-active">
                     <div class="inner">
-                        <h3><?php echo "25"; ?></h3>
+                        <h3><?php echo $deviceCount; ?></h3>
                         <p>IoT Devices</p>
                     </div>
                     <div class="icon">
@@ -53,7 +53,7 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3><?php echo "65" ?></h3>
+                        <h3><?php echo $taskCount; ?></h3>
                         <p>New Tasks</p>
                     </div>
                     <div class="icon">
@@ -67,7 +67,7 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3><?php echo "100" ?></h3>
+                        <h3><?php echo count($taskRecords); ?></h3>
                         <p>Completed Tasks</p>
                     </div>
                     <div class="icon">

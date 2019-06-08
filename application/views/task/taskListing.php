@@ -10,9 +10,9 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?= base_url().'pdf/'?>" title="Create PDF"><i class="fa fa-paper-plane"></i>Create PDF</a>
-                    <a class="btn btn-primary" href="<?= base_url().'exportEtpCsv/'?>" title="Create CSV"><i class="fa fa-file"></i>Create CSV</a>
-                    <a class="btn btn-primary" href="<?= base_url().'task-history/'?>" title="Task history"><i class="fa fa-search"></i>Task history</a>
+                    <a class="btn btn-primary" href="<?= base_url().'pdf/'?>" title="Create PDF"><i class="fa fa-file-pdf-o"></i>Create PDF</a>
+                    <a class="btn btn-primary" href="<?= base_url().'exportEtpCsv/'?>" title="Create CSV"><i class="fa fa-file-excel-o"></i>Create CSV</a>
+                    <a class="btn btn-primary" href="<?= base_url().'task-history/'?>" title="Task history"><i class="fa fa-history"></i>Task history</a>
                     <a class="btn btn-primary" href="<?php echo base_url(); ?>addTask"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
