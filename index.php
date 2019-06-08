@@ -66,8 +66,8 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
-		ini_set('display_errors', 1);
+		error_reporting(0);
+		ini_set('display_errors', 0);
 	break;
 
 	case 'testing':
@@ -312,5 +312,4 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-//echo BASEPATH.'core/CodeIgniter.php';exit;
 require_once BASEPATH.'core/CodeIgniter.php';

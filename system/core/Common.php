@@ -63,6 +63,7 @@ if ( ! function_exists('is_php'))
 	{
 		static $_is_php;
 		$version = (string) $version;
+
 		if ( ! isset($_is_php[$version]))
 		{
 			$_is_php[$version] = version_compare(PHP_VERSION, $version, '>=');
@@ -90,7 +91,7 @@ if ( ! function_exists('is_really_writable'))
 	function is_really_writable($file)
 	{
 		// If we're on a Unix server with safe_mode off we call is_writable
-		if (DIRECTORY_SEPARATOR === '/' && (is_php('7.0.3') OR ! ini_get('safe_mode')))
+		if (DIRECTORY_SEPARATOR === '/' && (is_php('5.4') OR ! ini_get('safe_mode')))
 		{
 			return is_writable($file);
 		}
