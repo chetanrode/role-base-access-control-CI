@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $base  = "http://".$_SERVER['HTTP_HOST'];
 $base .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-$config['base_url'] = "http://192.168.0.119/akhilesh/p_19/offline/AdminRolePermission/";
+$config['base_url'] = "Your/URl";
 
 /*
 |--------------------------------------------------------------------------
